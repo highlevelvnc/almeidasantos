@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed-variant": "#2d476f",
+                    "surface-variant": "#e0e3e5",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#4f2e00",
+                    "on-surface": "#191c1e",
+                    "inverse-surface": "#2d3133",
+                    "surface-container": "#eceef0",
+                    "on-primary-fixed": "#001b3c",
+                    "secondary-container": "#d9e3f8",
+                    "on-tertiary-container": "#c6955e",
+                    "secondary": "#555f70",
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed": "#ffddba",
+                    "primary-fixed-dim": "#adc7f7",
+                    "on-tertiary-fixed-variant": "#633f0f",
+                    "background": "#f7f9fb",
+                    "on-secondary-container": "#5b6577",
+                    "on-surface-variant": "#43474e",
+                    "primary": "#002045",
+                    "secondary-fixed": "#d9e3f8",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#191c1e",
+                    "inverse-primary": "#adc7f7",
+                    "on-tertiary-fixed": "#2b1700",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-container-high": "#e6e8ea",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed-dim": "#f2bc82",
+                    "outline": "#74777f",
+                    "secondary-fixed-dim": "#bdc7db",
+                    "on-primary-container": "#86a0cd",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#3e4758",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#455f88",
+                    "outline-variant": "#c4c6cf",
+                    "surface-container-highest": "#e0e3e5",
+                    "tertiary": "#321b00",
+                    "on-secondary-fixed": "#121c2b",
+                    "primary-container": "#1a365d",
+                    "error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 py-4">
+<div class="text-xl font-bold text-blue-950 dark:text-white">
+                Colégio Almeida Santos
+            </div>
+<div class="hidden md:flex items-center space-gap gap-8">
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-blue-900 dark:border-blue-400 pb-1 text-sm font-semibold tracking-tight" href="#">Sobre Nós</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 transition-colors text-sm font-semibold tracking-tight" href="#">Diferenciais</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 transition-colors text-sm font-semibold tracking-tight" href="#">Galeria</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 transition-colors text-sm font-semibold tracking-tight" href="#">Contato</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-600 dark:text-slate-400 p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-all duration-300">chat</button>
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm scale-95 active:opacity-80 transition-transform">
+                    Matrículas Abertas
+                </button>
+</div>
+</nav>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Children Learning" class="w-full h-full object-cover" data-alt="Close-up of diverse elementary students smiling and collaborating over a project in a bright, modern classroom with warm natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLs9NGveKXZ_BFcox7coKqSTx26LpyppGnKwQ72g0bZuW-5V49a2SEf1sy6yW9Ap-y2t38pxO_a1qUg22J55sTli8I3F50fG4WQM0k71KuXdMvA5jDA1amg2QcPHbsaPKPBQJdR1E7AplJUT1Zv7T6HmzXewPhjOSP-Gme7fOu2AyTOVVLnZ462mYn1a2_CpC4tg_ZY5Rc7XI8tJCfOW5fEjrF75a-Z0o9wrHb3_G6miU-TxawIBZnAlBFQ2R_Rpb4OkljCJFX5aA"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary-container/40"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+<div class="text-white space-y-6">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                        Excelência Acadêmica e Cuidado que Inspira o Futuro
+                    </h1>
+<p class="text-lg md:text-xl text-on-primary-container leading-relaxed max-w-lg">
+                        Um ambiente seguro e acolhedor para o desenvolvimento integral do seu filho em Iguaba Grande.
+                    </p>
+<div class="pt-4 flex flex-wrap gap-4">
+<button class="bg-white text-primary px-8 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-lowest transition-all shadow-xl">
+                            Solicitar Informações
+                        </button>
+<button class="border border-white/30 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                            Conheça o Colégio
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- About Us: The Academic Atelier Concept -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl z-10 relative">
+<img alt="Colégio Almeida Santos" class="w-full h-full object-cover" data-alt="Modern school architecture with clean lines and large windows reflecting a blue sky, surrounded by well-kept green spaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdYt6bCmtWqUklfc3rCacO_MAPyPXgXicOUwLrmpyvCUK8COZCmqE6XbQUqQYw8-9aiGn4P2tDAWMyyFqawt9XQcl5Xkioj93CC4A516Y2r0m9ZnNK8ZAid3el1qLMZvVGGmmCFDQp1Bja0h0Tr6NsUAC7YXSFkLjVYC1c2gIq7mdetJLGFwUVb4DCgeKfe3iE6bbpyAC_k4uMkMT-D5nvLHWp2kwD8pezjoaewOYcoggfWwT8Y7fkKuAuEHB3Fh7GBTJWD9CPLso"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-64 h-64 bg-secondary-container rounded-xl -z-10"></div>
+</div>
+<div class="w-full md:w-1/2 space-y-8">
+<div class="space-y-4">
+<span class="text-primary font-bold tracking-widest uppercase text-xs">Nossa Missão</span>
+<h2 class="text-4xl font-extrabold text-primary leading-tight">Educação que Transforma e Proximidade que Acolhe</h2>
+</div>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                            No Colégio Almeida Santos, acreditamos que a educação vai além da sala de aula. Nossa missão é proporcionar um ensino de excelência acadêmica pautado em valores éticos e humanos.
+                        </p>
+<p class="text-on-surface-variant text-lg leading-relaxed">
+                            Mantemos um compromisso inabalável com a proximidade familiar, criando um elo forte entre escola e casa, garantindo que cada aluno se sinta único, valorizado e preparado para os desafios do futuro.
+                        </p>
+<div class="grid grid-cols-2 gap-8 pt-4">
+<div>
+<div class="text-3xl font-black text-primary">15+</div>
+<div class="text-sm text-secondary font-medium">Anos de Tradição</div>
+</div>
+<div>
+<div class="text-3xl font-black text-primary">100%</div>
+<div class="text-sm text-secondary font-medium">Equipe Especializada</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Differentials: Bento Grid Layout -->
+<section class="py-24 bg-surface-container">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+<h2 class="text-4xl font-extrabold text-primary">Diferenciais que nos Definem</h2>
+<p class="text-on-surface-variant">Priorizamos o que há de mais moderno e humano na jornada educacional do seu filho.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl space-y-6 group hover:bg-primary transition-colors duration-500 shadow-sm">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-5xl">school</span>
+<h3 class="text-2xl font-bold text-primary group-hover:text-white">Ensino de Qualidade</h3>
+<p class="text-on-surface-variant group-hover:text-on-primary-fixed leading-relaxed">
+                            Metodologia ativa e currículo atualizado, focando no desenvolvimento cognitivo e socioemocional, preparando alunos para os melhores resultados.
+                        </p>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-xl space-y-6 shadow-sm border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-5xl">security</span>
+<h3 class="text-2xl font-bold text-primary">Ambiente Seguro</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            Infraestrutura monitorada e pensada para o bem-estar e proteção de nossos estudantes.
+                        </p>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-xl space-y-6 shadow-sm border border-outline-variant/15">
+<span class="material-symbols-outlined text-primary text-5xl">groups</span>
+<h3 class="text-2xl font-bold text-primary">Equipe Dedicada</h3>
+<p class="text-on-surface-variant leading-relaxed">
+                            Profissionais altamente qualificados e em constante atualização pedagógica.
+                        </p>
+</div>
+<div class="md:col-span-2 bg-primary p-10 rounded-xl flex flex-col md:flex-row gap-8 items-center text-white">
+<div class="space-y-4">
+<span class="material-symbols-outlined text-white text-5xl">forum</span>
+<h3 class="text-2xl font-bold">Comunicação Próxima</h3>
+<p class="text-blue-100 leading-relaxed">
+                                Canal direto e transparente entre pais e escola através de tecnologia e atendimento humanizado. Transparência total na jornada do aluno.
+                            </p>
+</div>
+<div class="flex-shrink-0 w-32 h-32 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+<span class="material-symbols-outlined text-4xl">phone_iphone</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery: Editorial Layout -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-4">
+<span class="text-primary font-bold tracking-widest uppercase text-xs">Galeria</span>
+<h2 class="text-4xl font-extrabold text-primary">Vida no Campus</h2>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 hover:underline" href="#">Ver todas as fotos <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:auto-rows-[250px]">
+<div class="col-span-2 row-span-2 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Wide shot of a vibrant school laboratory where students in white coats are performing safe science experiments" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ7zHGYfOFinmYx1RmGFHHxlOsV6Ts-VflrTUrXrYFkJusD4QtUB1jDUWfB8YX9-oWQTAlSgXsNavR73YEVRvZi7yOiBO4d7EVwcba8VNMBgEuJECNg_U8d2SqiYfjeWB5fnfpd3sWWKeLK_70BiHff9akN1ydULDQT702N0910cLIobpin4rJZBmkj2zw41GGt42Ycdr9uSeU1TLH-vqnX8tMy92j40bUJPJIjc7_ZVOHG6zoGI7_vhE7dRpC3J-KfDn4aJ3_iqY"/>
+</div>
+<div class="rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="High-angle shot of young students sitting in a circle on a colorful rug during story time in a library" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-SzOyqjdGCYsDc12EAScx2gxY2hap5W7M5e9cXV5QJvRyCuOS3cV03YSzOiF_R-3a9fGiRYQnR_KVX3ea_hE9B-7pOsDbpKKmCzjCkiHIQenCKZsE0bOUaj7e0LJU3hYUqV2r--oFU-8MF0HpnJbEAMOTFa4FPzhrFTRwpaC5vXk5taUQ_iZ5KHoyeBsBPIurym95Nauu48XCgXXqLelCgq2QBF_rlTuVqcue7YvibttTXPjVn_5OEdqF_QeD87CMhDaC2fTfTg0"/>
+</div>
+<div class="rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Action shot of students playing soccer on a well-maintained green sports field under a clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE4PDKvJIeDBy3pAJbLCVBMtY3eK2EBEAouJ32zNt34T4LK-kRiUepupYVjamiGljp0SyWLXbFERBEnB5yC3bzKNwIY0_BT-oUEts-NL5X66YOvjdId8AtSTzx0Nl-jFfzSdtmD3AoWWgMKua5dObQ7OYczKS-uO65QUAtzT4gV1ld8Ajw7-QqsUCxjbA6h9fWvLSdc8n86CQqIkoYRI8w8R16cT567BGL1MqOJvpcUsldAItNqOnwW1SCUQ-kMHo8jQtrDiluzYA"/>
+</div>
+<div class="col-span-2 rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Candid photo of students laughing and sharing a meal in a bright, clean school cafeteria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc_AMLkk9ENf7K_0VUPyHYRmSLOfMwDnLGP9OgesaVIfZoVo9cOfDdrSoi2DBy12pHa_2GTfwEkdqKnMwZ-HRkavsytI7IAwqADPbTdnwjdjaDDLS59UvNx3MhrawUQFBz350HRa3sPi0OZGZVSuUovIqS8Rd-9uJTyp3yFkymCh-zl3KCKrWizBh-2BE3T7F7Jv5UyDZQSqWpvJReIuMmOf5ACVG-GcKkQpNRCbMnA45QHi-84HM8j6rHkLQvSQ-bn-zZr4fMNPU"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6">
+<div class="bg-primary-container rounded-xl overflow-hidden flex flex-col md:flex-row">
+<div class="p-12 md:w-1/2 space-y-8">
+<h2 class="text-4xl font-extrabold text-white">Fale Conosco</h2>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container mt-1">location_on</span>
+<div>
+<p class="text-white font-bold">Endereço</p>
+<p class="text-on-primary-container">R. Paulino Rodrigues de Souza - Centro,<br/>Iguaba Grande - RJ</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container mt-1">call</span>
+<div>
+<p class="text-white font-bold">WhatsApp</p>
+<a class="text-on-primary-container hover:text-white transition-colors" href="https://wa.me/5522988090739">+55 22 98809-0739</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container mt-1">alternate_email</span>
+<div>
+<p class="text-white font-bold">Instagram</p>
+<a class="text-on-primary-container hover:text-white transition-colors" href="#">@colegioalmeidasantos</a>
+</div>
+</div>
+</div>
+<div class="pt-4">
+<button class="bg-white text-primary px-8 py-3 rounded-xl font-bold w-full md:w-auto">Agendar Visita</button>
+</div>
+</div>
+<div class="md:w-1/2 min-h-[300px] relative">
+<div class="absolute inset-0 bg-slate-200">
+<!-- Map placeholder -->
+<img alt="Localização" class="w-full h-full object-cover grayscale opacity-50" data-alt="Stylized map showing Iguaba Grande city center with a clean, professional aesthetic" data-location="Iguaba Grande" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChkZrjUVhqErE_uqW1WaHG_S0CWL3IYrGPKdev3Mueif-1MkKCDGeeywqk-STyZxixiG2PWwZAUUM2nWfWh8fhZt4ZcDp-51_-ZkL-Sb21alr_Da8BL0VPCxiswcr-Xzsto7ejrOHEPUW1UhgXzLVZo0IX5j9AmqHmUPuAqDpcTBTwEVolCZ63aY72t86FYJuav7HafPQoDxBNyZgKWo4Lu3_h4pCugbSdf-Y--cDxETRWYKcW5uHK4bDzFAfpjbhMnoepYOcQKYo"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary text-white p-4 rounded-full shadow-2xl">
+<span class="material-symbols-outlined text-4xl">school</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-6 bg-slate-100 dark:bg-slate-950">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="space-y-2 text-center md:text-left">
+<div class="text-lg font-bold text-blue-900 dark:text-white">Colégio Almeida Santos</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-[1.6]">© 2024 Colégio Almeida Santos - Iguaba Grande. Excelência Acadêmica.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm" href="#">Privacidade</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm" href="#">Trabalhe Conosco</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-300 transition-colors text-sm" href="#">Portal do Aluno</a>
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-blue-900 shadow-sm opacity-80 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">social_leaderboard</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white dark:bg-slate-800 flex items-center justify-center text-blue-900 shadow-sm opacity-80 hover:opacity-100 transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+</div>
+</div>
+</footer>
+</body></html>
