@@ -23,6 +23,12 @@
 
 
 /* ==========================================================================
+   Variável compartilhada (declarada ANTES da IIFE boot pra evitar TDZ)
+   ========================================================================== */
+let lenis = null;
+
+
+/* ==========================================================================
    1. BOOT
    ========================================================================== */
 (function boot() {
@@ -67,9 +73,8 @@
 
 /* ==========================================================================
    2. LENIS — smooth scroll integrado ao ScrollTrigger
+   (variável 'lenis' declarada no topo do arquivo pra evitar TDZ na IIFE boot)
    ========================================================================== */
-let lenis = null;
-
 function initLenis(prefersReduced) {
   if (prefersReduced || typeof Lenis === "undefined") return;
 
