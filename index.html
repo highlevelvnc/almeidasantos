@@ -115,6 +115,13 @@
       <p class="preloader-label">Colégio Almeida Santos</p>
     </div>
   </div>
+  <!-- Rede de segurança: se por algum motivo o JS falhar, o preloader some em 2.5s -->
+  <script>
+    setTimeout(function () {
+      var p = document.getElementById("preloader");
+      if (p) { p.style.transition = "opacity .5s"; p.style.opacity = "0"; setTimeout(function(){ p.remove(); }, 500); }
+    }, 2500);
+  </script>
 
   <!-- ============== ANNOUNCEMENT BAR (sazonal — comente quando não for época de matrícula) ============== -->
   <!--

@@ -108,18 +108,9 @@ function initPreloader() {
   const pre = document.getElementById("preloader");
   if (!pre) return;
 
-  // Tempo mínimo de exibição pra não dar flash
-  const minTime = 900;
-  const start = performance.now();
-
-  const finish = () => {
-    const elapsed = performance.now() - start;
-    const wait = Math.max(0, minTime - elapsed);
-    setTimeout(() => hidePreloader(), wait);
-  };
-
-  if (document.readyState === "complete") finish();
-  else window.addEventListener("load", finish, { once: true });
+  // Esconde após 900ms — NÃO dependemos do evento 'load' porque
+  // imagens externas (Unsplash, etc.) podem travar e o preloader nunca sumir.
+  setTimeout(() => hidePreloader(), 900);
 }
 
 function hidePreloader() {
