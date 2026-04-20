@@ -102,6 +102,20 @@
 
 <body id="top" class="bg-background text-ink-soft font-body antialiased">
 
+  <!-- Progressive enhancement: marca que JS rodou. Se falhar, CSS mostra tudo. -->
+  <script>
+    document.documentElement.classList.add('js-ready');
+    // Rede de segurança: após 3.5s, se GSAP não confirmar, força tudo visível
+    setTimeout(function () {
+      if (!window.__gsapReady) {
+        document.querySelectorAll('.reveal, .reveal-stagger').forEach(function (el) {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        });
+      }
+    }, 3500);
+  </script>
+
   <!-- ============== SKIP LINK (a11y) ============== -->
   <a href="#hero" class="skip-link">Pular para o conteúdo</a>
 

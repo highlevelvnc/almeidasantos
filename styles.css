@@ -269,9 +269,10 @@ html.lenis, html.lenis body { height: auto; }
 .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 18px 40px -14px rgba(37, 211, 102, 0.6); }
 
 
-/* Elementos começam invisíveis — GSAP cuida da entrada */
-.reveal,
-.reveal-stagger {
+/* Elementos começam invisíveis APENAS se JS confirmou que rodou.
+   Se o JS falhar (CDN bloqueado, erro, etc), o site aparece por padrão. */
+.js-ready .reveal,
+.js-ready .reveal-stagger {
   opacity: 0;
   transform: translateY(24px);
 }

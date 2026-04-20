@@ -47,6 +47,7 @@
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    window.__gsapReady = true; // sinaliza pra rede de segurança inline no HTML
 
     // Respeita preferência por movimento reduzido
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
