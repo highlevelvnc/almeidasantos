@@ -259,17 +259,17 @@
             </ul>
           </div>
 
-          <!-- Coluna imagem -->
+          <!-- Coluna vídeo institucional -->
           <div class="lg:col-span-5 reveal">
             <div class="hero-media">
               <div class="hero-media-frame" data-parallax="-0.08">
-                <!-- TODO: [FOTO-HERO] Substituir por foto REAL da fachada da escola ou turma real sorrindo no pátio (formato retrato, alta resolução) -->
-                <img
-                  src="https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80"
-                  alt="Foto institucional do Colégio Almeida Santos — substituir pela fachada real"
-                  data-replace="hero-real-photo"
-                  loading="eager"
-                />
+                <video
+                  class="hero-video"
+                  poster="public/almeida-poster.jpg"
+                  autoplay muted loop playsinline preload="metadata"
+                  aria-hidden="true">
+                  <source src="public/almeida-hero.mp4" type="video/mp4" />
+                </video>
               </div>
               <!-- Card flutuante -->
               <div class="hero-card reveal" data-parallax="0.05">
