@@ -26,6 +26,15 @@
   <link rel="icon" href="public/logo.jpg" />
   <link rel="apple-touch-icon" href="public/logo.jpg" />
 
+  <!-- ================= PERFORMANCE: preload crítico ================= -->
+  <link rel="preload" as="image" href="public/logo.jpg" fetchpriority="high" />
+  <link rel="preload" as="video" href="public/almeida-hero.mp4" type="video/mp4" />
+  <link rel="preload" as="image" href="public/almeida-poster.jpg" fetchpriority="high" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <!-- Foto decorativa do CTA final (preload baixa prioridade pra não competir com hero) -->
+  <link rel="prefetch" as="image" href="public/escola1.webp" />
+
   <!-- ================= SCHEMA.ORG: Escola (LocalBusiness ampliado) ================= -->
   <script type="application/ld+json">
   {
@@ -338,7 +347,7 @@
             </p>
 
             <div class="hero-ctas mt-9 reveal">
-              <a href="#visita" class="btn-primary btn-lg">
+              <a href="#visita" class="btn-primary btn-lg" data-magnetic>
                 <span class="material-symbols-rounded">calendar_month</span>
                 Agendar visita à escola
               </a>
@@ -384,6 +393,42 @@
       <a href="#ancoras" class="scroll-cue" aria-label="Rolar para próxima seção">
         <span class="material-symbols-rounded">expand_more</span>
       </a>
+    </section>
+
+
+    <!-- ============================================================ -->
+    <!--  1.5. MARQUEE — faixa horizontal animada                     -->
+    <!-- ============================================================ -->
+    <section class="marquee-section" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <span class="marquee-item"><em>Seriedade</em> acadêmica</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item"><em>Acolhimento</em> diário</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item"><em>Parceria</em> com a família</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Ensino de <em>base sólida</em></span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Turmas <em>acompanhadas de perto</em></span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Colégio em <em>Iguaba Grande</em></span>
+          <span class="marquee-dot">◆</span>
+          <!-- Duplicado pra continuidade visual do loop -->
+          <span class="marquee-item"><em>Seriedade</em> acadêmica</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item"><em>Acolhimento</em> diário</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item"><em>Parceria</em> com a família</span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Ensino de <em>base sólida</em></span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Turmas <em>acompanhadas de perto</em></span>
+          <span class="marquee-dot">◆</span>
+          <span class="marquee-item">Colégio em <em>Iguaba Grande</em></span>
+          <span class="marquee-dot">◆</span>
+        </div>
+      </div>
     </section>
 
 
@@ -528,7 +573,7 @@
         <div class="segment-grid mt-16">
 
           <!-- Fundamental I -->
-          <article class="segment-card reveal-stagger" data-segment="f1">
+          <article class="segment-card reveal-stagger" data-segment="f1" data-tilt>
             <div class="segment-media">
               <!-- TODO: [FOTO-F1] Foto real de crianças do Fundamental I em atividade -->
               <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Alunos do Ensino Fundamental I" data-replace="foto-f1" loading="lazy" />
@@ -552,7 +597,7 @@
           </article>
 
           <!-- Fundamental II -->
-          <article class="segment-card reveal-stagger" data-segment="f2">
+          <article class="segment-card reveal-stagger" data-segment="f2" data-tilt>
             <div class="segment-media">
               <!-- TODO: [FOTO-F2] Foto real de alunos do Fundamental II em aula/laboratório -->
               <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80" alt="Alunos do Ensino Fundamental II" data-replace="foto-f2" loading="lazy" />
@@ -576,7 +621,7 @@
           </article>
 
           <!-- Médio -->
-          <article class="segment-card segment-card--featured reveal-stagger" data-segment="em">
+          <article class="segment-card segment-card--featured reveal-stagger" data-segment="em" data-tilt>
             <div class="segment-media">
               <!-- TODO: [FOTO-EM] Foto real de alunos do Ensino Médio em apresentação/estudo -->
               <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Alunos do Ensino Médio" data-replace="foto-em" loading="lazy" />
@@ -1192,14 +1237,14 @@
         <div class="contact-map reveal">
           <!-- TODO: [MAPA] Substituir o src do iframe pelo embed real do Google Maps com endereço exato -->
           <iframe
-            src="https://www.google.com/maps?q=R.+Paulino+Rodrigues+de+Souza,+Iguaba+Grande+-+RJ&output=embed"
+            src="https://www.google.com/maps?q=Col%C3%A9gio+Almeida+Santos%2C+R.+Paulino+Rodrigues+de+Souza+-+Centro%2C+Iguaba+Grande+-+RJ%2C+28960-000&output=embed&hl=pt-BR"
             width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Localização do Colégio Almeida Santos">
+            title="Localização do Colégio Almeida Santos — R. Paulino Rodrigues de Souza, Centro, Iguaba Grande/RJ">
           </iframe>
         </div>
       </div>

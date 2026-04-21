@@ -507,6 +507,113 @@ function initFooterYear() {
 
 
 /* ==========================================================================
+   11.0. HERO VIDEO — pausa quando sai da viewport (economiza bateria)
+   ========================================================================== */
+(function initHeroVideoPause() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    const video = document.querySelector(".hero-video");
+    if (!video || !("IntersectionObserver" in window)) return;
+
+    // Respeita preferência do usuário
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.1 });
+
+    io.observe(video);
+
+    // Pausa também quando a aba não está visível (Page Visibility API)
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) video.pause();
+      else if (video.getBoundingClientRect().top < window.innerHeight) video.play().catch(() => {});
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   11.0.b. MAGNETIC BUTTONS — efeito sutil de "atração" ao mouse
+   ==========================================================================
+   Botões com [data-magnetic] se movem levemente em direção ao cursor
+   quando ele se aproxima. Só ativa em dispositivos com hover fino (mouse).
+*/
+(function initMagneticButtons() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    // Só em dispositivos com hover fino (mouse) — não em touch
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const elements = document.querySelectorAll("[data-magnetic]");
+    elements.forEach(el => {
+      const strength = 0.25; // quanto do deslocamento do cursor o botão segue
+
+      el.addEventListener("mousemove", (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+      });
+
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "";
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   11.0.c. 3D TILT nos cards — rotação sutil no hover
+   ==========================================================================
+   Cards com [data-tilt] rotacionam levemente no eixo X/Y seguindo o cursor.
+   Efeito discreto — rotação máxima de 6 graus.
+*/
+(function initCardTilt() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const cards = document.querySelectorAll("[data-tilt]");
+    const maxRotate = 6; // graus
+
+    cards.forEach(card => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;   // -0.5 a 0.5
+        const y = (e.clientY - rect.top) / rect.height - 0.5;   // -0.5 a 0.5
+        const rotY = x * maxRotate * 2;   // esquerda/direita
+        const rotX = -y * maxRotate * 2;  // cima/baixo (invertido)
+        card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
    11.a. READING PROGRESS BAR — só em páginas de post
    ========================================================================== */
 (function initReadingProgress() {
