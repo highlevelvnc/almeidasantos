@@ -26,24 +26,119 @@
   <link rel="icon" href="public/logo.jpg" />
   <link rel="apple-touch-icon" href="public/logo.jpg" />
 
-  <!-- ================= SCHEMA.ORG ================= -->
+  <!-- ================= SCHEMA.ORG: Escola (LocalBusiness ampliado) ================= -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
+    "@type": ["EducationalOrganization", "LocalBusiness"],
     "name": "Colégio Almeida Santos",
-    "description": "Escola particular em Iguaba Grande – RJ, com Ensino Fundamental I, II e Médio.",
+    "alternateName": "Almeida Santos",
+    "description": "Escola particular em Iguaba Grande – RJ, com Ensino Fundamental I, II e Médio. Ensino de base com qualidade superior, valores e parceria com a família.",
     "url": "https://www.colegioalmeidasantos.com.br/",
-    "logo": "public/logo.jpg",
+    "logo": "https://www.colegioalmeidasantos.com.br/public/logo.jpg",
+    "image": "https://www.colegioalmeidasantos.com.br/public/logo.jpg",
     "telephone": "+55 22 98809-0739",
+    "priceRange": "$$",
+    "foundingDate": "2018",
     "sameAs": ["https://www.instagram.com/colegioalmeidasantosrj/"],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "R. Paulino Rodrigues de Souza, Centro",
       "addressLocality": "Iguaba Grande",
       "addressRegion": "RJ",
+      "postalCode": "28960-000",
       "addressCountry": "BR"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Iguaba Grande" },
+      { "@type": "City", "name": "São Pedro da Aldeia" },
+      { "@type": "City", "name": "Araruama" },
+      { "@type": "City", "name": "Cabo Frio" }
+    ],
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+      "opens": "07:00",
+      "closes": "17:00"
+    }],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Segmentos de ensino",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "EducationalOccupationalProgram", "name": "Ensino Fundamental I", "educationalLevel": "Primary education", "typicalAgeRange": "6-10" }},
+        { "@type": "Offer", "itemOffered": { "@type": "EducationalOccupationalProgram", "name": "Ensino Fundamental II", "educationalLevel": "Lower secondary", "typicalAgeRange": "11-14" }},
+        { "@type": "Offer", "itemOffered": { "@type": "EducationalOccupationalProgram", "name": "Ensino Médio", "educationalLevel": "Upper secondary", "typicalAgeRange": "15-17" }}
+      ]
     }
+  }
+  </script>
+
+  <!-- ================= SCHEMA.ORG: FAQ (aparece como rich snippet no Google) ================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como faço para matricular meu filho no Colégio Almeida Santos?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A forma mais rápida é agendar uma visita pelo WhatsApp (22 98809-0739). A gente recebe vocês na escola, apresenta a estrutura, conversa com você e explica o processo de matrícula pessoalmente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Em quais segmentos o Colégio Almeida Santos atua?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Oferecemos Ensino Fundamental I (1º ao 5º ano), Ensino Fundamental II (6º ao 9º ano) e Ensino Médio (1ª à 3ª série) em Iguaba Grande – RJ."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qual o horário das aulas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fundamental I funciona das 13h às 17h30 (tarde). Fundamental II das 7h às 12h15 (manhã). Ensino Médio das 7h às 13h (manhã). Horários podem variar por turma — confirme com a secretaria."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso visitar a escola antes de decidir?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, e fazemos questão. Agende uma visita pelo WhatsApp e venha conhecer a estrutura, a equipe e o dia a dia do Colégio Almeida Santos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "O Colégio Almeida Santos atende alunos de cidades vizinhas?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Recebemos famílias de Iguaba Grande e de toda a Região dos Lagos, incluindo São Pedro da Aldeia, Araruama e Cabo Frio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Há quantos anos o Colégio Almeida Santos existe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Há 8 anos, desde 2018, formando gerações de alunos em Iguaba Grande – RJ."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ================= SCHEMA.ORG: Breadcrumb ================= -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.colegioalmeidasantos.com.br/" }
+    ]
   }
   </script>
 
@@ -1171,6 +1266,21 @@
     </div>
   </footer>
 
+
+  <!-- ============== COOKIE / LGPD BANNER ============== -->
+  <div id="cookie-banner" class="cookie-banner" hidden>
+    <div class="cookie-banner-inner">
+      <div class="cookie-banner-text">
+        <strong>A gente usa cookies pra melhorar a experiência.</strong>
+        Este site utiliza cookies essenciais pro funcionamento e pode coletar dados estatísticos anônimos de navegação, conforme a LGPD (Lei 13.709/2018).
+      </div>
+      <div class="cookie-banner-buttons">
+        <button id="cookie-accept" class="btn-primary" type="button">
+          <span class="material-symbols-rounded text-[16px]">check</span> Entendi
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ============== WHATSAPP FLUTUANTE ============== -->
   <a id="wa-float"

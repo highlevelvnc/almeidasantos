@@ -1702,6 +1702,51 @@ a.contact-card:hover .contact-arrow { color: var(--c-primary); transform: transl
 
 
 /* ===================================================
+   19.b. COOKIE / LGPD BANNER
+   =================================================== */
+.cookie-banner {
+  position: fixed;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 95;
+  background: white;
+  border-radius: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 20px 50px -16px rgba(0, 32, 69, 0.35);
+  border: 1px solid rgba(0, 32, 69, 0.08);
+  max-width: 48rem;
+  margin: 0 auto;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.5s var(--ease), opacity 0.5s var(--ease);
+}
+.cookie-banner.visible { transform: translateY(0); opacity: 1; }
+.cookie-banner-inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.cookie-banner-text {
+  flex: 1;
+  min-width: 240px;
+  color: var(--c-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+.cookie-banner-text strong { color: var(--c-primary); display: block; margin-bottom: 0.2rem; }
+.cookie-banner-buttons { flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .cookie-banner { left: 0.5rem; right: 0.5rem; bottom: 0.5rem; padding: 1rem 1.1rem; }
+  .cookie-banner-text { font-size: 0.82rem; }
+  .cookie-banner-inner { flex-direction: column; align-items: stretch; }
+  .cookie-banner-buttons button { width: 100%; justify-content: center; }
+}
+
+
+/* ===================================================
    20.a. SEGMENTO HERO — páginas individuais dos segmentos
    =================================================== */
 .segment-hero {

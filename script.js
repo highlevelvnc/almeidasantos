@@ -507,6 +507,40 @@ function initFooterYear() {
 
 
 /* ==========================================================================
+   11.b. COOKIE / LGPD BANNER
+   ========================================================================== */
+(function initCookieBanner() {
+  if (typeof document === "undefined") return;
+
+  function boot() {
+    const banner = document.getElementById("cookie-banner");
+    const accept = document.getElementById("cookie-accept");
+    if (!banner || !accept) return;
+
+    // Se já aceitou, não mostra
+    try {
+      if (localStorage.getItem("as-cookie-consent") === "1") return;
+    } catch (e) { /* privacy mode: segue sem storage */ }
+
+    banner.hidden = false;
+    setTimeout(() => banner.classList.add("visible"), 800);
+
+    accept.addEventListener("click", () => {
+      banner.classList.remove("visible");
+      try { localStorage.setItem("as-cookie-consent", "1"); } catch (e) {}
+      setTimeout(() => banner.remove(), 500);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+})();
+
+
+/* ==========================================================================
    12. ACESSIBILIDADE — fecha menu no Esc
    ========================================================================== */
 document.addEventListener("keydown", e => {
