@@ -343,7 +343,7 @@
             </h1>
 
             <p class="hero-sub mt-7 reveal">
-              Do Ensino Fundamental ao Médio, uma escola <strong>séria, acolhedora e próxima das famílias</strong>. Aqui, cada aluno é conhecido pelo nome, pela história e pelo potencial — porque educação de verdade se faz olhando nos olhos.
+              Do Ensino Fundamental ao Médio, uma escola <strong>séria, acolhedora e próxima das famílias</strong>, no centro de Iguaba Grande. Aqui cada aluno é conhecido pelo nome, pela história e pelo potencial — porque educação de verdade se faz olhando nos olhos.
             </p>
 
             <div class="hero-ctas mt-9 reveal">
@@ -359,7 +359,8 @@
 
             <ul class="hero-trust mt-10 reveal" role="list">
               <li><span class="material-symbols-rounded">verified</span> Fundamental I · Fundamental II · Ensino Médio</li>
-              <li><span class="material-symbols-rounded">location_on</span> Centro — Iguaba Grande – RJ</li>
+              <li><span class="material-symbols-rounded">schedule</span> 8 anos em Iguaba Grande</li>
+              <li><span class="material-symbols-rounded">location_on</span> Rua Paulino Rodrigues de Souza, Centro</li>
             </ul>
           </div>
 
@@ -1100,7 +1101,7 @@
               <em>pessoalmente</em>.
             </h2>
             <p class="visit-lead">
-              A porta está aberta. Marque um horário e venha sentir o clima do colégio — a visita é rápida, sem compromisso e vale mais que qualquer página na internet.
+              A porta está aberta. Marque um horário, venha sentir o clima do colégio e conversar com a coordenação. A visita é rápida, sem compromisso — e vale mais que qualquer página na internet.
             </p>
 
             <div class="visit-ctas">
@@ -1234,18 +1235,12 @@
           </div>
         </div>
 
-        <div class="contact-map reveal">
-          <!-- TODO: [MAPA] Substituir o src do iframe pelo embed real do Google Maps com endereço exato -->
-          <iframe
-            src="https://www.google.com/maps?q=Col%C3%A9gio+Almeida+Santos%2C+R.+Paulino+Rodrigues+de+Souza+-+Centro%2C+Iguaba+Grande+-+RJ%2C+28960-000&output=embed&hl=pt-BR"
-            width="100%"
-            height="100%"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Localização do Colégio Almeida Santos — R. Paulino Rodrigues de Souza, Centro, Iguaba Grande/RJ">
-          </iframe>
+        <div class="contact-map reveal" id="map-wrapper">
+          <!-- Iframe injetado via JS quando o wrapper entra na viewport (economia de ~500KB) -->
+          <div class="map-placeholder" data-map-src="https://www.google.com/maps?q=Col%C3%A9gio+Almeida+Santos%2C+R.+Paulino+Rodrigues+de+Souza+-+Centro%2C+Iguaba+Grande+-+RJ%2C+28960-000&output=embed&hl=pt-BR">
+            <span class="material-symbols-rounded">location_on</span>
+            <p>Carregando mapa…</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1306,7 +1301,10 @@
       <div class="footer-bottom">
         <p>© <span id="year">2026</span> Colégio Almeida Santos · Todos os direitos reservados.</p>
         <!-- TODO: [AUTORIZACAO] Substituir pelo número real da portaria de autorização MEC/CRE -->
-        <p class="text-white/40" data-replace="autorizacao">Autorização de funcionamento conforme Portaria CRE/RJ vigente.</p>
+        <p class="text-white/40" data-replace="autorizacao">
+          Autorização de funcionamento conforme Portaria CRE/RJ vigente ·
+          Instituição sediada em <a href="https://iguaba.rj.gov.br/" target="_blank" rel="noopener" class="underline hover:text-white transition-colors">Iguaba Grande</a> – RJ.
+        </p>
       </div>
     </div>
   </footer>

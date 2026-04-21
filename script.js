@@ -507,6 +507,94 @@ function initFooterYear() {
 
 
 /* ==========================================================================
+   10.c. LAZY MAP — carrega o iframe do Google Maps só quando entrar na viewport
+   ==========================================================================
+   Economia real: iframe do Google Maps baixa ~400-600KB de scripts.
+   Como está no fim do site, 90% dos visitantes nunca chegam lá. Aqui só
+   carrega quando o wrapper está próximo de aparecer na tela.
+*/
+(function initLazyMap() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    const placeholder = document.querySelector(".map-placeholder");
+    if (!placeholder || !("IntersectionObserver" in window)) return;
+
+    const src = placeholder.dataset.mapSrc;
+    if (!src) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.style.border = "0";
+        iframe.loading = "lazy";
+        iframe.referrerPolicy = "no-referrer-when-downgrade";
+        iframe.allowFullscreen = true;
+        iframe.title = "Localização do Colégio Almeida Santos — R. Paulino Rodrigues de Souza, Centro, Iguaba Grande/RJ";
+        placeholder.replaceWith(iframe);
+        io.disconnect();
+      });
+    }, { rootMargin: "300px" }); // carrega 300px antes de entrar na tela
+
+    io.observe(placeholder);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   10.d. LINK PREFETCH ON HOVER — antecipa navegação pra próxima página
+   ==========================================================================
+   Quando o usuário passa o mouse num link interno por mais de 80ms,
+   dispara prefetch da página de destino. Quando ele clica, já está no cache.
+   Sensação: navegação instantânea.
+*/
+(function initLinkPrefetch() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    if (!window.matchMedia("(hover: hover)").matches) return;
+
+    const prefetched = new Set();
+    let timer;
+
+    const prefetch = (href) => {
+      if (prefetched.has(href)) return;
+      const link = document.createElement("link");
+      link.rel = "prefetch";
+      link.href = href;
+      link.as = "document";
+      document.head.appendChild(link);
+      prefetched.add(href);
+    };
+
+    const isInternal = (href) => {
+      if (!href) return false;
+      if (href.startsWith("#") || href.startsWith("mailto:") || href.startsWith("tel:")) return false;
+      if (href.startsWith("http") && !href.includes(window.location.host)) return false;
+      return true;
+    };
+
+    document.addEventListener("mouseover", (e) => {
+      const a = e.target.closest("a[href]");
+      if (!a) return;
+      const href = a.getAttribute("href");
+      if (!isInternal(href)) return;
+      clearTimeout(timer);
+      timer = setTimeout(() => prefetch(a.href), 80);
+    });
+
+    document.addEventListener("mouseout", () => clearTimeout(timer));
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
    11.0. HERO VIDEO — pausa quando sai da viewport (economiza bateria)
    ========================================================================== */
 (function initHeroVideoPause() {
