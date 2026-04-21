@@ -9,6 +9,34 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Páginas institucionais -->
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/matriculas.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Segmentos (páginas dedicadas) -->
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/segmentos/fundamental-1.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/segmentos/fundamental-2.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/segmentos/ensino-medio.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- Blog listagem -->
   <url>
     <loc>https://www.colegioalmeidasantos.com.br/blog/</loc>
@@ -17,7 +45,19 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- Posts -->
+  <!-- Blog posts -->
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/blog/bullying-escola-familia.html</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://www.colegioalmeidasantos.com.br/blog/rotina-de-estudos-em-casa.html</loc>
+    <lastmod>2026-04-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://www.colegioalmeidasantos.com.br/blog/como-escolher-escola-particular-iguaba-grande.html</loc>
     <lastmod>2026-04-15</lastmod>
