@@ -2655,6 +2655,41 @@ a.contact-card:hover .contact-arrow { color: var(--c-primary); transform: transl
 
 
 /* ===================================================
+   20.d. OTIMIZAÇÕES ESPECÍFICAS PRA MOBILE
+   =================================================== */
+
+/* Blobs do hero têm blur 80px — caro em mobile. Reduz pra 40px. */
+@media (max-width: 768px) {
+  .hero-blob { filter: blur(40px); opacity: 0.35; }
+  .hero-blob--1 { width: 320px; height: 320px; }
+  .hero-blob--2 { width: 280px; height: 280px; }
+  .hero-grid { display: none; } /* grid mask caro de renderizar */
+  .method-blob { filter: blur(35px); opacity: 0.18; }
+
+  /* Marquee: diminuir velocidade (60s) pra reduzir uso de CPU */
+  .marquee-track { animation-duration: 60s; }
+
+  /* Bento shine e reflexos ocultos no mobile (animação pesada sem ganho em telas pequenas) */
+  .bento-shine { display: none; }
+  .visit-section::before { opacity: 0.12; mix-blend-mode: normal; } /* foto decorativa mais sutil */
+
+  /* Preloader bar mais discreto */
+  .preloader-bar { width: 140px; }
+}
+
+/* Em telas muito pequenas (iPhone SE, dobráveis), mais redução */
+@media (max-width: 400px) {
+  .hero-blob { display: none; }          /* elimina totalmente */
+  .scroll-cue { display: none; }
+  .marquee-track { animation-duration: 40s; }
+  .section-backdrop { display: none; }
+}
+
+/* Desabilita smooth scroll nativo quando Lenis tá ativo (evita conflito) */
+html.lenis { scroll-behavior: auto; }
+
+
+/* ===================================================
    21. ACESSIBILIDADE / MOVIMENTO REDUZIDO
    =================================================== */
 @media (prefers-reduced-motion: reduce) {

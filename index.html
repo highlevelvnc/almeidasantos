@@ -28,11 +28,14 @@
 
   <!-- ================= PERFORMANCE: preload crítico ================= -->
   <link rel="preload" as="image" href="public/logo.jpg" fetchpriority="high" />
-  <link rel="preload" as="video" href="public/almeida-hero.mp4" type="video/mp4" />
-  <link rel="preload" as="image" href="public/almeida-poster.jpg" fetchpriority="high" />
+  <!-- Hero image: browser só baixa a versão certa pro viewport do usuário -->
+  <link rel="preload" as="image" href="public/header.webp" type="image/webp"
+        imagesrcset="public/mobileheader.webp" media="(max-width: 640px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="public/header.webp" type="image/webp"
+        media="(min-width: 641px)" fetchpriority="high" />
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
-  <!-- Foto decorativa do CTA final (preload baixa prioridade pra não competir com hero) -->
+  <!-- Foto decorativa do CTA final (prefetch baixa prioridade) -->
   <link rel="prefetch" as="image" href="public/escola1.webp" />
 
   <!-- ================= SCHEMA.ORG: Escola (LocalBusiness ampliado) ================= -->
@@ -364,17 +367,24 @@
             </ul>
           </div>
 
-          <!-- Coluna vídeo institucional -->
+          <!-- Coluna imagem institucional (desktop e mobile otimizadas separadamente) -->
           <div class="lg:col-span-5 reveal">
             <div class="hero-media">
               <div class="hero-media-frame" data-parallax="-0.08">
-                <video
-                  class="hero-video"
-                  poster="public/almeida-poster.jpg"
-                  autoplay muted loop playsinline preload="metadata"
-                  aria-hidden="true">
-                  <source src="public/almeida-hero.mp4" type="video/mp4" />
-                </video>
+                <picture class="hero-video">
+                  <!-- Mobile: imagem vertical otimizada -->
+                  <source media="(max-width: 640px)" type="image/webp" srcset="public/mobileheader.webp" />
+                  <source media="(max-width: 640px)" srcset="public/mobileheader.jpeg" />
+                  <!-- Desktop: imagem horizontal otimizada -->
+                  <source type="image/webp" srcset="public/header.webp" />
+                  <img
+                    src="public/header.jpeg"
+                    alt="Colégio Almeida Santos — alunos em atividade escolar"
+                    width="1600" height="853"
+                    loading="eager"
+                    fetchpriority="high"
+                  />
+                </picture>
               </div>
               <!-- Card flutuante -->
               <div class="hero-card reveal" data-parallax="0.05">

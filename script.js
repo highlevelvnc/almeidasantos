@@ -600,7 +600,8 @@ function initFooterYear() {
 (function initHeroVideoPause() {
   if (typeof document === "undefined") return;
   function boot() {
-    const video = document.querySelector(".hero-video");
+    // Só age em elemento <video>. Hoje o hero usa <picture>, mas se voltar ao vídeo, segue funcionando
+    const video = document.querySelector("video.hero-video");
     if (!video || !("IntersectionObserver" in window)) return;
 
     // Respeita preferência do usuário
