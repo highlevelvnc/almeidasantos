@@ -64,9 +64,15 @@ let lenis = null;
     initHero();
     initReveals(prefersReduced);
     initParallax(prefersReduced);
+    initHeroTextParallax(prefersReduced);
+    initMagneticButtons();
     initCounters();
     initWhatsAppFloat();
     initFooterYear();
+
+    // Força o ticker do GSAP a acordar (caso tenha entrado em sleep mode
+    // após o setup do Lenis — sintoma: nenhuma animação avança).
+    gsap.ticker.wake();
   }
 })();
 
@@ -82,15 +88,20 @@ function initLenis(prefersReduced) {
     duration: 1.15,
     easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    smoothTouch: false, // evita bugs de scroll no mobile
+    smoothTouch: false,
     wheelMultiplier: 1,
     touchMultiplier: 1.4
   });
 
-  // Sincroniza Lenis com o RAF do GSAP
+  // Sincroniza scroll do Lenis com update do ScrollTrigger
   lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add(time => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
+
+  // RAF NATIVO pro Lenis (desacoplado do ticker do GSAP).
+  // Antes eu fazia gsap.ticker.add(t => lenis.raf(t*1000)) + lagSmoothing(0),
+  // mas essa combinação pode deixar o ticker do GSAP em sleep mode e nenhuma
+  // animação avança. Com RAF nativo o Lenis roda suavemente sem mexer no GSAP.
+  const raf = time => { lenis.raf(time); requestAnimationFrame(raf); };
+  requestAnimationFrame(raf);
 
   // Suporte ao <a href="#id"> navegando via Lenis (smooth bonito)
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -277,36 +288,79 @@ function initReveals(prefersReduced) {
   staggerGroups.forEach(elements => {
     if (elements.length === 0) return;
     gsap.fromTo(elements,
-      { opacity: 0, y: 32 },
+      { opacity: 0, y: 28 },
       {
         opacity: 1,
         y: 0,
-        duration: 0.85,
+        duration: 0.75,
         ease: "power3.out",
-        stagger: 0.12,
+        stagger: 0.09,
         scrollTrigger: {
           trigger: elements[0],
-          start: "top 85%",
+          start: "top 88%",
           toggleActions: "play none none none"
         }
       }
     );
   });
 
-  // Título de seção: letra por letra (efeito editorial sutil)
-  gsap.utils.toArray(".section-title").forEach(title => {
-    // Já coberto por .reveal, mas adiciona um toque extra nas ênfases <em>
-    const ems = title.querySelectorAll("em");
-    if (ems.length === 0) return;
-    gsap.fromTo(ems,
-      { backgroundSize: "0% 100%" },
-      {
-        backgroundSize: "100% 100%",
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: { trigger: title, start: "top 80%" }
-      }
-    );
+  // Efeito de destaque em <em> (linha dourada translúcida cresce atrás do texto)
+  // O <em> ganha a classe 'revealed' que dispara a transition CSS de background-size.
+  const highlightEms = document.querySelectorAll(".section-title em, .hero-title em, .visit-title em, .contact-title em");
+  highlightEms.forEach(em => {
+    ScrollTrigger.create({
+      trigger: em,
+      start: "top 85%",
+      once: true,
+      onEnter: () => em.classList.add("revealed")
+    });
+  });
+}
+
+
+/* ==========================================================================
+   7.b. MAGNETIC BUTTONS — CTAs primários "puxam" sutilmente o cursor
+   ========================================================================== */
+function initMagneticButtons() {
+  // Não aplica em mobile/touch (pointer:coarse)
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+  const targets = document.querySelectorAll(".btn-primary.btn-lg, .btn-whatsapp.btn-lg");
+  targets.forEach(btn => {
+    btn.addEventListener("mousemove", e => {
+      const r = btn.getBoundingClientRect();
+      const mx = e.clientX - (r.left + r.width / 2);
+      const my = e.clientY - (r.top + r.height / 2);
+      gsap.to(btn, {
+        x: mx * 0.18,
+        y: my * 0.25,
+        duration: 0.4,
+        ease: "power3.out"
+      });
+    });
+    btn.addEventListener("mouseleave", () => {
+      gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: "elastic.out(1, 0.5)" });
+    });
+  });
+}
+
+
+/* ==========================================================================
+   7.c. HERO TEXT PARALLAX — texto sobe mais devagar que o scroll
+   ========================================================================== */
+function initHeroTextParallax(prefersReduced) {
+  if (prefersReduced) return;
+  const textCol = document.querySelector(".hero-section .lg\\:col-span-7");
+  if (!textCol) return;
+  gsap.to(textCol, {
+    y: -60,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".hero-section",
+      start: "top top",
+      end: "bottom top",
+      scrub: 1.2
+    }
   });
 }
 
@@ -355,8 +409,8 @@ function initCounters() {
       onEnter: () => {
         gsap.to(obj, {
           val: target,
-          duration: 1.8,
-          ease: "power2.out",
+          duration: 2.1,
+          ease: "expo.out",
           onUpdate: () => {
             el.innerHTML = Math.round(obj.val) + (suffix ? `<span>${suffix}</span>` : "");
           }
@@ -459,6 +513,18 @@ document.addEventListener("keydown", e => {
   if (e.key === "Escape") {
     const menu = document.getElementById("mobile-menu");
     if (menu && menu.classList.contains("open")) closeMobileMenu();
+  }
+});
+
+
+/* ==========================================================================
+   13. VISIBILITY — quando a aba volta ao foreground, acorda o GSAP e refaz
+        os cálculos do ScrollTrigger. Browsers pausam RAF em abas ocultas.
+   ========================================================================== */
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && typeof gsap !== "undefined") {
+    gsap.ticker.wake();
+    if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
   }
 });
 
