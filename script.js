@@ -507,6 +507,141 @@ function initFooterYear() {
 
 
 /* ==========================================================================
+   11.a. READING PROGRESS BAR — só em páginas de post
+   ========================================================================== */
+(function initReadingProgress() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    const article = document.querySelector(".post-article");
+    if (!article) return;
+
+    // Cria a barra no topo se ainda não existir
+    let bar = document.getElementById("read-progress");
+    if (!bar) {
+      bar = document.createElement("div");
+      bar.id = "read-progress";
+      bar.setAttribute("aria-hidden", "true");
+      document.body.appendChild(bar);
+    }
+
+    const onScroll = () => {
+      const rect = article.getBoundingClientRect();
+      const total = article.offsetHeight - window.innerHeight;
+      const read = Math.min(total, Math.max(0, -rect.top));
+      const pct = total > 0 ? (read / total) * 100 : 0;
+      bar.style.transform = `scaleX(${pct / 100})`;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   11.c. SCROLL-TO-TOP FLUTUANTE — aparece após rolar >800px
+   ========================================================================== */
+(function initScrollToTop() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    let btn = document.getElementById("scroll-top");
+    if (!btn) {
+      btn = document.createElement("button");
+      btn.id = "scroll-top";
+      btn.setAttribute("aria-label", "Voltar ao topo");
+      btn.type = "button";
+      btn.innerHTML = '<span class="material-symbols-rounded">arrow_upward</span>';
+      document.body.appendChild(btn);
+    }
+    const onScroll = () => {
+      btn.classList.toggle("visible", window.scrollY > 800);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    btn.addEventListener("click", () => {
+      if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+    onScroll();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   11.d. SHARE BUTTONS em posts — WhatsApp e copiar link
+   ========================================================================== */
+(function initShareButtons() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    const slots = document.querySelectorAll(".post-share");
+    if (slots.length === 0) return;
+    slots.forEach(slot => {
+      const url = encodeURIComponent(window.location.href);
+      const title = encodeURIComponent(document.querySelector("h1")?.textContent?.trim().replace(/\s+/g, " ") || "Colégio Almeida Santos");
+      slot.innerHTML = `
+        <span class="post-share-label">Compartilhar:</span>
+        <a class="post-share-btn post-share-wa" href="https://wa.me/?text=${title}%20—%20${url}" target="_blank" rel="noopener" aria-label="Compartilhar no WhatsApp">
+          <span class="material-symbols-rounded">chat</span>
+          WhatsApp
+        </a>
+        <button class="post-share-btn post-share-copy" type="button" aria-label="Copiar link">
+          <span class="material-symbols-rounded">link</span>
+          <span class="copy-label">Copiar link</span>
+        </button>`;
+      const copyBtn = slot.querySelector(".post-share-copy");
+      const copyLabel = slot.querySelector(".copy-label");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            copyLabel.textContent = "Copiado!";
+            copyBtn.classList.add("copied");
+            setTimeout(() => {
+              copyLabel.textContent = "Copiar link";
+              copyBtn.classList.remove("copied");
+            }, 2000);
+          } catch (e) { /* ignora */ }
+        });
+      }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
+   11.e. BLOG CATEGORY FILTER — filtra cards da listagem por tag
+   ========================================================================== */
+(function initBlogFilter() {
+  if (typeof document === "undefined") return;
+  function boot() {
+    const container = document.querySelector(".blog-filter");
+    const cards = document.querySelectorAll(".blog-grid .blog-card");
+    if (!container || cards.length === 0) return;
+
+    const buttons = container.querySelectorAll(".blog-filter-btn");
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const filter = btn.dataset.filter;
+        buttons.forEach(b => b.classList.toggle("active", b === btn));
+        cards.forEach(card => {
+          const tag = card.querySelector(".blog-card-tag")?.textContent?.trim();
+          const show = filter === "all" || tag === filter;
+          card.style.display = show ? "" : "none";
+          card.style.opacity = show ? "1" : "0";
+        });
+      });
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+
+/* ==========================================================================
    11.b. COOKIE / LGPD BANNER
    ========================================================================== */
 (function initCookieBanner() {

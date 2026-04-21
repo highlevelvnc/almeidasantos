@@ -1702,6 +1702,199 @@ a.contact-card:hover .contact-arrow { color: var(--c-primary); transform: transl
 
 
 /* ===================================================
+   19.a. READING PROGRESS BAR (posts)
+   =================================================== */
+#read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--c-gold), var(--c-gold-dark));
+  transform-origin: left center;
+  transform: scaleX(0);
+  z-index: 100;
+  pointer-events: none;
+  transition: transform 0.1s linear;
+  box-shadow: 0 2px 8px -2px rgba(199, 155, 90, 0.5);
+}
+
+
+/* ===================================================
+   19.c. SCROLL-TO-TOP
+   =================================================== */
+#scroll-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 6rem; /* acima do WhatsApp flutuante */
+  z-index: 89;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px -8px rgba(0, 32, 69, 0.45);
+  transform: translateY(20px) scale(0.85);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s var(--ease), opacity 0.4s var(--ease), background-color 0.3s var(--ease);
+  cursor: pointer;
+}
+#scroll-top.visible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+#scroll-top:hover { background: var(--c-primary-500); transform: translateY(-3px) scale(1); }
+#scroll-top .material-symbols-rounded { font-size: 22px; }
+@media (max-width: 640px) {
+  #scroll-top { right: 1rem; bottom: 5.25rem; width: 42px; height: 42px; }
+}
+
+
+/* ===================================================
+   19.d. SHARE BUTTONS (posts)
+   =================================================== */
+.post-share {
+  max-width: 42rem !important;
+  margin: 2.5rem auto 0 !important;
+  padding-top: 2rem;
+  border-top: 1px solid var(--c-outline);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.post-share-label {
+  font-family: var(--f-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--c-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-right: 0.25rem;
+}
+.post-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--c-primary);
+  background: var(--c-surface-2);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.post-share-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--c-primary-100);
+}
+.post-share-wa:hover { background: var(--c-whatsapp); color: white; border-color: var(--c-whatsapp); }
+.post-share-copy.copied { background: var(--c-gold); color: white; border-color: var(--c-gold); }
+.post-share-btn .material-symbols-rounded { font-size: 18px; }
+
+
+/* ===================================================
+   19.e. BLOG CATEGORY FILTER
+   =================================================== */
+.blog-filter {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 3rem 0 2rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 999px;
+  box-shadow: var(--sh-soft);
+  width: fit-content;
+  max-width: 100%;
+}
+.blog-filter-btn {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  color: var(--c-muted);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  white-space: nowrap;
+}
+.blog-filter-btn:hover { color: var(--c-primary); background: var(--c-surface-2); }
+.blog-filter-btn.active {
+  background: var(--c-primary);
+  color: white;
+  box-shadow: 0 6px 14px -4px rgba(0, 32, 69, 0.35);
+}
+
+/* Transição de cards ao filtrar */
+.blog-grid .blog-card {
+  transition: opacity 0.35s var(--ease);
+}
+@media (max-width: 640px) {
+  .blog-filter { overflow-x: auto; flex-wrap: nowrap; }
+  .blog-filter-btn { flex-shrink: 0; }
+}
+
+
+/* ===================================================
+   19.f. 404 PAGE
+   =================================================== */
+.page-404 {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.5rem;
+  background: linear-gradient(180deg, var(--c-primary-50) 0%, var(--c-bg) 100%);
+}
+.page-404-inner { max-width: 40rem; }
+.page-404-code {
+  font-family: var(--f-serif);
+  font-weight: 300;
+  font-size: clamp(6rem, 16vw, 12rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--c-primary);
+  margin: 0 0 1rem;
+}
+.page-404-code em {
+  font-style: italic;
+  color: var(--c-gold-dark);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 400;
+}
+.page-404-title {
+  font-family: var(--f-serif);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--c-primary);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+.page-404-lead {
+  font-size: 1.1rem;
+  color: var(--c-muted);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.page-404-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+
+/* ===================================================
    19.b. COOKIE / LGPD BANNER
    =================================================== */
 .cookie-banner {
